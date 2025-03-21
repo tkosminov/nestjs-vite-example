@@ -1,0 +1,23 @@
+{
+  // ! Конфиг для запуска Debug режима в VSCode для webinar-api
+  // ! https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "debug",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "npm",
+      "args": [
+        "run",
+        "start:dev",
+      ],
+      "runtimeArgs": [],
+      "env": {
+        "NODE_ENV": "development",
+        "TS_NODE_PROJECT": "${workspaceFolder}/tsconfig.json"
+      },
+    },
+  ]
+}

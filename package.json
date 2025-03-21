@@ -1,0 +1,51 @@
+{
+  "name": "nestjs-template",
+  "version": "0.0.1",
+  "description": "",
+  "author": "t.kosminov",
+  "private": false,
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "npm run lint -- --fix",
+    "build": "rimraf build && vite --config vite.config.mjs build",
+    "start:build": "RUN_BUILD=true node --enable-source-maps dist/main.js --unhandled-rejections=warn",
+    "start:dev": "vite --config vite.config.mjs"
+  },
+  "prettier": "./prettier.config.cjs",
+  "dependencies": {
+    "@nestjs/common": "^11.0.11",
+    "@nestjs/core": "^11.0.11",
+    "@nestjs/microservices": "^11.0.11",
+    "@nestjs/platform-express": "^11.0.11",
+    "@nestjs/terminus": "^11.0.0",
+    "@nestjs/typeorm": "^11.0.0",
+    "bcryptjs": "^3.0.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "dotenv-flow": "^4.1.0",
+    "helmet": "^8.0.0",
+    "ioredis": "^5.6.0",
+    "pg": "^8.14.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "typeorm": "^0.3.21",
+    "typeorm-extension": "^3.7.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.11.11",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-promise": "^7.2.1",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^5.4.14",
+    "vite-plugin-node": "^4.0.0"
+  }
+}
