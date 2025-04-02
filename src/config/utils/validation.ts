@@ -12,7 +12,7 @@ function toBoolean(value?: boolean | string) {
     }
 
     if (value.toLowerCase() === 'true') {
-      return false;
+      return true;
     }
 
     return undefined;
