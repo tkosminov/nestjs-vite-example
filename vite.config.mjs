@@ -1,3 +1,4 @@
+import { glob } from 'glob';
 import path from 'node:path';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -8,10 +9,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const root_path = path.resolve(__dirname);
+
+const swc_path = path.resolve(root_path, 'swc.config.json');
 const src_path = path.resolve(root_path, 'src');
 
 const main_path = path.resolve(src_path, 'main.ts');
-const swc_path = path.resolve(root_path, 'swc.config.json');
+const repl_path = path.resolve(src_path, 'repl.ts');
+const cli_path = path.resolve(src_path, 'typeorm/typeorm.cli.ts');
+
+const migration_files_path = glob.sync(`${src_path}/typeorm/migrations/[0-9]*-*.ts`);
+
+const app_path = process.env.RUN_BUILD ? [main_path, repl_path, cli_path, ...migration_files_path] : main_path;
 
 const config = defineConfig({
   server: {
@@ -23,7 +31,7 @@ const config = defineConfig({
   plugins: [
     ...VitePluginNode({
       adapter: 'nest',
-      appPath: main_path,
+      appPath: app_path,
       exportName: 'vite_node_app',
       tsCompiler: 'swc',
       swcOptions: {

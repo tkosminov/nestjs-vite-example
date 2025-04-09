@@ -8,9 +8,15 @@
   "scripts": {
     "lint": "eslint .",
     "lint-fix": "npm run lint -- --fix",
-    "build": "rimraf build && vite --config vite.config.mjs build",
-    "start:build": "RUN_BUILD=true node --enable-source-maps dist/main.js --unhandled-rejections=warn",
-    "start:dev": "vite --config vite.config.mjs"
+    "build": "rimraf build && RUN_BUILD=true vite --config vite.config.mjs build",
+    "start:dev": "vite --config vite.config.mjs",
+    "start:build": "node --enable-source-maps dist/main.js --unhandled-rejections=warn",
+    "start:repl": "node --enable-source-maps dist/repl.js --unhandled-rejections=warn",
+    "typeorm:cli": "node ./node_modules/typeorm/cli",
+    "typeorm:create": "npm run typeorm:cli -- migration:create ./src/typeorm/migrations/${MIGRATION_NAME}",
+    "typeorm:run": "npm run typeorm:cli -- -d ./dist/typeorm/typeorm.cli.js migration:run",
+    "typeorm:revert": "npm run typeorm:cli -- -d ./dist/typeorm/typeorm.cli.js migration:revert",
+    "typeorm:sync": "npm run typeorm:cli -- -d ./dist/typeorm/typeorm.cli.js schema:sync"
   },
   "prettier": "./prettier.config.cjs",
   "dependencies": {
@@ -42,6 +48,7 @@
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-promise": "^7.2.1",
+    "glob": "^11.0.1",
     "rimraf": "^6.0.1",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1",
