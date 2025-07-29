@@ -37,7 +37,6 @@ WORKDIR /server
 
 ARG env
 ENV NODE_ENV=${env}
-ENV RUN_BUILD=true
 
 COPY --from=build /build/package.json /build/package-lock.json ./
 

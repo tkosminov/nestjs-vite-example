@@ -6,6 +6,8 @@ import { TypeOrmOptionsFactory } from './typeorm-options.factory';
 const config = new ConfigService(`${process.cwd()}/config`);
 const factory = new TypeOrmOptionsFactory(config);
 
-export default new DataSource({
+const dataSource = new DataSource({
   ...(factory.createTypeOrmOptions() as DataSourceOptions),
 });
+
+export { dataSource };

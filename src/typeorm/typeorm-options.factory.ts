@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory as NestJSTypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
 
 import { ConfigService } from '../config/config.service';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { entities } from './typeorm-entity.list';
+import { migrations } from './typeorm-migration.list';
 
 @Injectable()
 export class TypeOrmOptionsFactory implements NestJSTypeOrmOptionsFactory {
@@ -20,8 +17,8 @@ export class TypeOrmOptionsFactory implements NestJSTypeOrmOptionsFactory {
       username: this.config.get('DB_USERNAME'),
       password: this.config.get('DB_PASSWORD'),
       database: this.config.get('DB_DATABASE'),
-      entities: [__dirname + '/**/*.entity.{t,j}s'],
-      migrations: [__dirname + '/migrations/**/[0-9]*-*.{t,j}s'],
+      entities,
+      migrations,
       migrationsRun: true,
       synchronize: false,
       logging: this.config.get('DB_LOGGING'),
