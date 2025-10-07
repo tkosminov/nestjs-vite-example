@@ -5,6 +5,7 @@ import { filter, map } from 'rxjs/operators';
 import { v4 } from 'uuid';
 
 import { ConfigService } from '../config/config.service';
+import { addToREPLContext } from '../repl-custom/repl.helpers';
 import { RedisClientService } from './redis-client.service';
 
 export interface IRedisSubscribeMessage {
@@ -24,6 +25,8 @@ export class RedisService {
     private readonly client: RedisClientService
   ) {
     this._redis_key = this.config.get('REDIS_KEY');
+
+    addToREPLContext({ redis: this });
   }
 
   public get pub_client() {
